@@ -18,7 +18,7 @@ public class CategoriaResources {
 	private CategoriaService categoriaService;
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<?> buscarPorId(@PathVariable Integer id) {
+	public ResponseEntity<Categoria> buscarPorId(@PathVariable Integer id) {
 		Categoria categoria = categoriaService.buscar(id);
 		return ResponseEntity.ok(categoria);
 	}

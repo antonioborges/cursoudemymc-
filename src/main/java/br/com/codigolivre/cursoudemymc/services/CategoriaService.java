@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.codigolivre.cursoudemymc.domain.Categoria;
 import br.com.codigolivre.cursoudemymc.repositories.CategoriaRepository;
+import br.com.codigolivre.cursoudemymc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -16,7 +17,8 @@ public class CategoriaService {
 
 	public Categoria buscar(Integer id) {
 		Optional<Categoria> categoriaId = categoriaRepository.findById(id);
-		return categoriaId.orElse(null);
+		return categoriaId.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id:" + id + ", Tipo: " + Categoria.class.getName()));
 
 	}
 
